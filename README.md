@@ -14,6 +14,35 @@ It runs on ordinary PHP hosting. There is no mandatory cloud account, no telemet
 
 > Think of it as a modern database cockpit: the speed of a data grid, the clarity of a schema diagram, and the control of an administration console.
 
+## See SQL Canvas in action
+
+<p align="center">
+  <img src="docs/screenshots/workspace-overview.png" alt="SQL Canvas connected workspace in dark mode" width="100%">
+</p>
+
+<p align="center"><em>Connect once, then explore data, relationships, queries, and server details from a single focused workspace.</em></p>
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="docs/screenshots/data-workspace.png" alt="SQL Canvas data browser showing a projects table">
+      <br><strong>Browse real data without losing context</strong><br>
+      Filter, sort, inspect, and page through records while the object tree and table identity stay visible.
+    </td>
+    <td width="50%">
+      <img src="docs/screenshots/sql-workspace.png" alt="SQL Canvas SQL editor with query results">
+      <br><strong>Write SQL and inspect results immediately</strong><br>
+      Use a multi-tab query workspace with readable results, timing, EXPLAIN support, and export tools.
+    </td>
+  </tr>
+</table>
+
+<p align="center">
+  <img src="docs/screenshots/relationship-canvas.png" alt="SQL Canvas interactive database relationship diagram" width="100%">
+</p>
+
+<p align="center"><em>Turn foreign keys into an interactive relationship map with zoom, auto-layout, minimap, snapshots, and image export.</em></p>
+
 ## Why people choose SQL Canvas
 
 - **Visual by default.** See tables, keys, columns, and relationships instead of mentally reconstructing a schema from menus.
