@@ -5,7 +5,7 @@
 [![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white)](https://www.php.net/)
 [![MySQL 8.4](https://img.shields.io/badge/MySQL-8.4-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![MariaDB 11.4](https://img.shields.io/badge/MariaDB-11.4-003545?logo=mariadb&logoColor=white)](https://mariadb.org/)
-[![Tests](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+[![Tests](https://github.com/shafleen/SQL-Canvas/actions/workflows/ci.yml/badge.svg)](https://github.com/shafleen/SQL-Canvas/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22c55e.svg)](LICENSE)
 
 **SQL Canvas is a visual-first, self-hosted workspace for MySQL and MariaDB.** Browse data like a spreadsheet, map relationships on an interactive canvas, build and inspect schemas, run SQL, import and export data, and manage a server from one polished interface.
