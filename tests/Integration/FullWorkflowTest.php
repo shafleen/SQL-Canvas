@@ -162,7 +162,9 @@ final class FullWorkflowTest extends TestCase
             $overview = (new AdministrationService($this->database, true))->overview();
             self::assertArrayHasKey('Uptime', $overview['status']);
             $administration = new AdministrationService($this->database, true);
-            self::assertNotEmpty($administration->grants(['username' => getenv('SQL_CANVAS_TEST_USER'), 'host' => '127.0.0.1'])['grants']);
+            $currentAccount = (string) $this->database->pdo()->query('SELECT CURRENT_USER()')->fetchColumn();
+            [$currentUsername, $currentHost] = explode('@', $currentAccount, 2);
+            self::assertNotEmpty($administration->grants(['username' => $currentUsername, 'host' => $currentHost])['grants']);
             $variables = $administration->variables('max_connections');
             self::assertContains('max_connections', array_map(
                 static fn (array $row): string => strtolower((string) ($row['Variable_name'] ?? array_values($row)[0] ?? '')),
