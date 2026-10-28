@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: json, pdo, pdo_mysql
+          coverage: none
+      - uses: ramsey/composer-install@v3
+      - run: composer lint
+      - run: composer test -- --exclude-group database
+
+  frontend:
+    name: Frontend unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm test
+
+  databases:
+    name: ${{ matrix.name }} fixture
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: MySQL 8.4
+            image: mysql:8.4
+          - name: MariaDB 11.4
+            image: mariadb:11.4
+    services:
+      database:
+        image: ${{ matrix.image }}
+        env:
+          MYSQL_ROOT_PASSWORD: sql_canvas_test_root_only
+          MYSQL_DATABASE: sql_canvas_test_fixture
+          MYSQL_USER: sql_canvas_test
+          MYSQL_PASSWORD: sql_canvas_test_only
+          MARIADB_ROOT_PASSWORD: sql_canvas_test_root_only
+          MARIADB_DATABASE: sql_canvas_test_fixture
+          MARIADB_USER: sql_canvas_test
+          MARIADB_PASSWORD: sql_canvas_test_only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized || mysqladmin ping -h 127.0.0.1 -usql_canvas_test -psql_canvas_test_only"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=30
+    env:
+      SQL_CANVAS_TEST_ALLOW_RESET: '1'
+      SQL_CANVAS_TEST_HOST: 127.0.0.1
+      SQL_CANVAS_TEST_PORT: 3306
+      SQL_CANVAS_TEST_DATABASE: sql_canvas_test_fixture
+      SQL_CANVAS_TEST_USER: sql_canvas_test
+      SQL_CANVAS_TEST_PASSWORD: sql_canvas_test_only
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo_mysql
+          coverage: none
+      - uses: ramsey/composer-install@v3
+      - run: php tools/reset-test-database.php
+      - run: vendor/bin/phpunit --group database
+

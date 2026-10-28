@@ -1,0 +1,9 @@
+# Apache shared-hosting fallback only. Prefer setting DocumentRoot to /public.
+Options -Indexes
+RewriteEngine On
+RewriteRule ^public(?:/|$) - [L]
+RewriteRule ^(?:bootstrap|config|deploy|docs|src|templates|tests|tools|vendor)(?:/|$) - [F,L,NC]
+RewriteRule ^(?:composer\.(?:json|lock)|phpunit\.xml|docker-compose.*|.*\.md|.*\.sql)$ - [F,L,NC]
+RewriteRule ^$ public/ [L]
+RewriteRule ^(.+)$ public/$1 [L]
+

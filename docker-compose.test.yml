@@ -1,0 +1,39 @@
+name: sql-canvas-tests
+
+services:
+  mysql:
+    image: mysql:8.4
+    profiles: [mysql]
+    environment:
+      MYSQL_ROOT_PASSWORD: sql_canvas_test_root_only
+      MYSQL_DATABASE: sql_canvas_test_fixture
+      MYSQL_USER: sql_canvas_test
+      MYSQL_PASSWORD: sql_canvas_test_only
+    ports:
+      - "127.0.0.1:3307:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    tmpfs:
+      - /var/lib/mysql
+
+  mariadb:
+    image: mariadb:11.4
+    profiles: [mariadb]
+    environment:
+      MARIADB_ROOT_PASSWORD: sql_canvas_test_root_only
+      MARIADB_DATABASE: sql_canvas_test_fixture
+      MARIADB_USER: sql_canvas_test
+      MARIADB_PASSWORD: sql_canvas_test_only
+    ports:
+      - "127.0.0.1:3308:3306"
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h 127.0.0.1 -uroot -p$$MARIADB_ROOT_PASSWORD --silent"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    tmpfs:
+      - /var/lib/mysql
+

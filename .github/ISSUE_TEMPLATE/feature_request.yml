@@ -1,0 +1,24 @@
+name: Feature request
+description: Suggest a focused improvement to SQL Canvas.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the database task or frustration, not only the proposed control.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested experience
+      description: Explain how you expect the workflow to behave.
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and compatibility considerations
+      description: Note database versions, permissions, destructive behavior, or large-data concerns.

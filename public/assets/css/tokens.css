@@ -1,0 +1,54 @@
+:root {
+    color-scheme: dark;
+    --bg: #0e1219;
+    --bg-grid: rgba(114, 152, 232, 0.055);
+    --surface: #171d27;
+    --surface-raised: #202938;
+    --surface-soft: #141a23;
+    --border: #303b4c;
+    --border-soft: rgba(156, 170, 189, 0.16);
+    --text: #ecf2f8;
+    --text-muted: #9caabd;
+    --text-faint: #6f7d91;
+    --teal: #51c4b4;
+    --teal-soft: rgba(81, 196, 180, 0.14);
+    --blue: #7298e8;
+    --blue-soft: rgba(114, 152, 232, 0.13);
+    --gold: #d6a65b;
+    --danger: #f26d78;
+    --success: #5fcaa1;
+    --shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+    --focus: 0 0 0 3px rgba(114, 152, 232, 0.38);
+    --font-display: "Segoe UI Variable Display", "Aptos Display", "Segoe UI", sans-serif;
+    --font-body: "Segoe UI Variable Text", "Aptos", "Segoe UI", sans-serif;
+    --font-code: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+    --titlebar-h: 58px;
+    --statusbar-h: 26px;
+    --results-h: 118px;
+    --explorer-w: 268px;
+    --inspector-w: 286px;
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #eef2f6;
+    --bg-grid: rgba(50, 80, 120, 0.07);
+    --surface: #ffffff;
+    --surface-raised: #f7f9fc;
+    --surface-soft: #e8edf3;
+    --border: #c8d1dc;
+    --border-soft: rgba(55, 74, 96, 0.15);
+    --text: #182232;
+    --text-muted: #56667a;
+    --text-faint: #79879a;
+    --teal: #147f76;
+    --teal-soft: rgba(20, 127, 118, 0.1);
+    --blue: #3c66bd;
+    --blue-soft: rgba(60, 102, 189, 0.1);
+    --gold: #9a681c;
+    --danger: #c43d4a;
+    --success: #217c5c;
+    --shadow: 0 22px 60px rgba(37, 53, 75, 0.15);
+    --focus: 0 0 0 3px rgba(60, 102, 189, 0.28);
+}
+

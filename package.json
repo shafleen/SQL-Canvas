@@ -1,0 +1,12 @@
+{
+  "name": "sql-canvas-frontend-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/Frontend/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

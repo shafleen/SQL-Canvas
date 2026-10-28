@@ -1,0 +1,43 @@
+.app-frame {
+    display: grid;
+    grid-template: var(--titlebar-h) minmax(0, 1fr) var(--results-h) var(--statusbar-h) / var(--explorer-w) minmax(420px, 1fr) var(--inspector-w);
+    grid-template-areas: "title title title" "explorer workspace inspector" "explorer results inspector" "status status status";
+    width: 100vw;
+    height: 100dvh;
+    min-height: 520px;
+}
+.titlebar { grid-area: title; }
+.explorer { grid-area: explorer; }
+.workspace { grid-area: workspace; min-width: 0; min-height: 0; }
+.inspector { grid-area: inspector; }
+.results-panel { grid-area: results; }
+.statusbar { grid-area: status; }
+.explorer, .inspector { min-height: 0; overflow: hidden; }
+.app-frame.explorer-collapsed { --explorer-w: 48px; }
+.app-frame.inspector-collapsed { --inspector-w: 0px; }
+.app-frame.results-collapsed { --results-h: 36px; }
+.app-frame.explorer-collapsed .explorer > :not(.pane-heading),
+.app-frame.explorer-collapsed .explorer .pane-heading > div,
+.app-frame.inspector-collapsed .inspector { visibility: hidden; }
+.app-frame.results-collapsed .results-body { display: none; }
+.app-frame.results-collapsed .results-handle svg { transform: rotate(180deg); }
+
+@media (max-width: 1020px) {
+    .app-frame { --inspector-w: 0px; --explorer-w: 232px; }
+    .inspector { visibility: hidden; position: fixed; top: var(--titlebar-h); right: 0; bottom: calc(var(--statusbar-h) + var(--results-h)); width: min(320px, 88vw); z-index: 20; box-shadow: var(--shadow); }
+    .app-frame.inspector-overlay .inspector { visibility: visible; }
+    .connection-context { display: none !important; }
+}
+@media (max-width: 720px) {
+    body { overflow: auto; }
+    .app-frame { grid-template: var(--titlebar-h) minmax(0, 1fr) 36px var(--statusbar-h) / 1fr; grid-template-areas: "title" "workspace" "results" "status"; min-height: 560px; }
+    .explorer { visibility: hidden; position: fixed; z-index: 30; top: var(--titlebar-h); bottom: var(--statusbar-h); left: 0; width: min(300px, 90vw); box-shadow: var(--shadow); }
+    .app-frame.explorer-overlay .explorer { visibility: visible; }
+    .command-trigger span, .command-trigger kbd { display: none; }
+    .titlebar { padding-inline: 10px !important; gap: 8px !important; }
+    .brand { min-width: auto !important; }
+    .welcome-canvas { overflow: auto !important; }
+    .results-body { display: none !important; }
+    .statusbar > span:nth-child(2), .statusbar > span:nth-child(4) { display: none; }
+}
+
